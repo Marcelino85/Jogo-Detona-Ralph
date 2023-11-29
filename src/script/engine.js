@@ -3,7 +3,8 @@ const state = {
         squares:document.querySelectorAll(".square"),
         enemy:document.querySelector(".enemy"),
         timeLeft: document.querySelector("#time-left"),
-        score: document.querySelector("#score")
+        score: document.querySelector("#score"),
+        yourLife: document.querySelector("#your-life"),
     },
 
     values:{
@@ -11,12 +12,14 @@ const state = {
         hitPosition: 0,
         result: 0,
         curretTime: 60,
+        life: 3,
 
     },
 
     actions:{
         timerId: setInterval(randomSquare, 1000),
         countDownTimerId: setInterval(countDown, 1000),
+        
     }
 };
 
@@ -59,14 +62,33 @@ function addListenerHitBox(){
                 state.values.hitPosition = null;
                 playSound("ooh")
 
+            } else {
+                state.values.life--
+                state.view.yourLife.textContent = state.values.life;
+                playSound("negative.Song")
+                
+                if(state.values.life === 0){
+                    alert('Game Over!')
+                    playSound('ooh') 
+                    window.location.reload()
+                    
+                }
+                
+
             }
         })
         
     })
 }
 
+
 function initialize(){
     addListenerHitBox()
 }
+
+// FUNCTION FOR RELOAD
+function recarregar(){
+    window.location.reload()
+  }
 
 initialize();
