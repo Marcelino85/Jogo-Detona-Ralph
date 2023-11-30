@@ -68,7 +68,7 @@ function addListenerHitBox(){
                 playSound("negative.Song")
                 
                 if(state.values.life === 0){
-                    alert('Game Over!')
+                    alert(`Game Over. Você perdeu suas 3 vidas! Click em "OK" para continuar`)
                     playSound('ooh') 
                     window.location.reload()
                     
